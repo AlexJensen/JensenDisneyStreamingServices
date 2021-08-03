@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0501B3F4-29EC-3A0C-8DB7-405BA3153233}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4" "-BC:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/build" --check-stamp-file "C:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.21\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeCCompiler.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeSystem.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\cmake_uninstall.cmake.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw3.pc.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw3Config.cmake.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw_config.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4" "-BC:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/build" --check-stamp-file "C:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.21\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeCCompiler.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeSystem.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\cmake_uninstall.cmake.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw3.pc.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw3Config.cmake.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw_config.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4" "-BC:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/build" --check-stamp-file "C:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.21\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeCCompiler.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeSystem.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\cmake_uninstall.cmake.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw3.pc.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw3Config.cmake.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw_config.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4" "-BC:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/build" --check-stamp-file "C:/Users/ajensen/source/repos/JensenDisneyStreamingServices/3rd Party Downloaded Files/glfw-3.3.4/glfw-3.3.4/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.21\Modules\BasicConfigVersion-SameMajorVersion.cmake.in;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindDoxygen.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.21\Modules\WriteBasicConfigVersionFile.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeCCompiler.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\3.21.1\CMakeSystem.cmake;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\cmake_uninstall.cmake.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw3.pc.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw3Config.cmake.in;C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\src\glfw_config.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\ZERO_CHECK.vcxproj">
+      <Project>{74EC5936-1CAD-3F5C-9E1B-ADDFD66B2B5E}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\examples\boing.vcxproj">
+      <Project>{FFAAA441-1787-33FA-AD49-E85D7F555CC7}</Project>
+      <Name>boing</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\clipboard.vcxproj">
+      <Project>{8F0570EB-C3F6-3FAD-920E-EC38CA4A91F6}</Project>
+      <Name>clipboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\cursor.vcxproj">
+      <Project>{9144666A-A1E9-308D-908E-DF43944D3580}</Project>
+      <Name>cursor</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\empty.vcxproj">
+      <Project>{1BAB4DE1-93E9-36CD-BB07-6AA43CBB10EB}</Project>
+      <Name>empty</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\events.vcxproj">
+      <Project>{B9CE8964-C92B-3697-AC8E-B0D0911893AB}</Project>
+      <Name>events</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\gamma.vcxproj">
+      <Project>{91D187D8-2553-3D6F-8397-62C89DE62F9C}</Project>
+      <Name>gamma</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\examples\gears.vcxproj">
+      <Project>{E7C07B3A-5004-387F-8E4B-E2A752503352}</Project>
+      <Name>gears</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\src\glfw.vcxproj">
+      <Project>{6F8392F7-D166-328F-92BE-0DBF09E6C314}</Project>
+      <Name>glfw</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\glfwinfo.vcxproj">
+      <Project>{C85C45E9-47F0-3D29-897B-40AEBC04B502}</Project>
+      <Name>glfwinfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\examples\heightmap.vcxproj">
+      <Project>{DA174437-3A5A-39DC-B30A-8AF880A2CB38}</Project>
+      <Name>heightmap</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\icon.vcxproj">
+      <Project>{3399DD10-F145-3CFD-A86C-949DAA71B92A}</Project>
+      <Name>icon</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\iconify.vcxproj">
+      <Project>{8B3CC4DC-5305-3C85-812C-76038CB5313C}</Project>
+      <Name>iconify</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\inputlag.vcxproj">
+      <Project>{A6BF1A52-613B-350E-8671-F9164C4581C1}</Project>
+      <Name>inputlag</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\joysticks.vcxproj">
+      <Project>{46F38F8F-51D6-3FDA-AFEA-2F6161EABE54}</Project>
+      <Name>joysticks</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\monitors.vcxproj">
+      <Project>{2B386B0F-AB76-350A-98FD-35A70ED4A679}</Project>
+      <Name>monitors</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\msaa.vcxproj">
+      <Project>{27A9D64A-13B4-31D2-ACEE-575CFF8E5B7A}</Project>
+      <Name>msaa</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\examples\offscreen.vcxproj">
+      <Project>{7A89BA17-FBD9-32F3-8864-EBAE278DC02A}</Project>
+      <Name>offscreen</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\opacity.vcxproj">
+      <Project>{1BDF2C35-0C39-39F4-A649-ACE500CF5878}</Project>
+      <Name>opacity</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\examples\particles.vcxproj">
+      <Project>{C3B06183-B039-3C4A-A4C0-EE5EB16E3ED4}</Project>
+      <Name>particles</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\reopen.vcxproj">
+      <Project>{702ECF83-7775-39F2-B0ED-51D23815E12A}</Project>
+      <Name>reopen</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\examples\sharing.vcxproj">
+      <Project>{66D9AC7F-17B0-3D3E-8B39-B17DDC6710DB}</Project>
+      <Name>sharing</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\examples\simple.vcxproj">
+      <Project>{69AD1CBB-C482-390E-A402-32B26F3820E8}</Project>
+      <Name>simple</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\examples\splitview.vcxproj">
+      <Project>{F75333A3-DB1E-3C0F-9D11-1820F7EF15A1}</Project>
+      <Name>splitview</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\tearing.vcxproj">
+      <Project>{2A936076-F1CC-3097-B8D1-92B29D63AFB1}</Project>
+      <Name>tearing</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\threads.vcxproj">
+      <Project>{C2B3B3F6-3A00-3BD3-AF7B-E1020EE99118}</Project>
+      <Name>threads</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\timeout.vcxproj">
+      <Project>{AA23906F-1D50-3167-8D57-EBD53907E7EA}</Project>
+      <Name>timeout</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\title.vcxproj">
+      <Project>{1D319D85-017E-35AE-AD52-B3ABF41D71CC}</Project>
+      <Name>title</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\triangle-vulkan.vcxproj">
+      <Project>{2FEEB6EE-263B-3E0F-94BC-62619467A596}</Project>
+      <Name>triangle-vulkan</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\examples\wave.vcxproj">
+      <Project>{7E92CDD9-7B44-3BAD-B3CC-341C719AB12E}</Project>
+      <Name>wave</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\ajensen\source\repos\JensenDisneyStreamingServices\3rd Party Downloaded Files\glfw-3.3.4\glfw-3.3.4\build\tests\windows.vcxproj">
+      <Project>{8D747D04-57DA-3D6D-9164-643620BC421B}</Project>
+      <Name>windows</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
