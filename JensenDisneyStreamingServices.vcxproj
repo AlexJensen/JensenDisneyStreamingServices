@@ -144,9 +144,11 @@
   <ItemGroup>
     <ClCompile Include="3rd Party Downloaded Files\glad\src\glad.c" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="XAMLLeftovers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
+    <ClInclude Include="XAMLLeftovers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
