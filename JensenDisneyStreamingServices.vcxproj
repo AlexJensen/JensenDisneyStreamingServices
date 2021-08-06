@@ -143,10 +143,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3rd Party Downloaded Files\glad\src\glad.c" />
+    <ClCompile Include="JSONReader.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="XAMLLeftovers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="JSONReader.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="XAMLLeftovers.h" />
   </ItemGroup>

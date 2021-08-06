@@ -3,7 +3,7 @@ class XAMLLeftovers
 {
 };
 
-const std::string url("https://cd-static.bamgrid.com/dp-117731241344/home.json");
+/**const std::string url("https://cd-static.bamgrid.com/dp-117731241344/home.json");
 
 CURL* curl = curl_easy_init();
 
@@ -56,3 +56,5 @@ if (httpCode == 200)
 
     }
     std::string one = root["data"]["StandardCollection"]["containers"][0]["set"]["items"][0]["image"]["tile"]["2.29"]["series"]["default"]["url"].toStyledString();
+
+    */
