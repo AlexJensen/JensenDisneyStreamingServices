@@ -78,8 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Jax\source\repos\JensenDisneyStreamingServices\ExternalLibs\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jax\source\repos\JensenDisneyStreamingServices\ExternalLibs\Libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\ExternalLibs\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\ExternalLibs\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -146,13 +146,11 @@
     <ClCompile Include="JSONReader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="XAMLLeftovers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="JSONReader.h" />
     <ClInclude Include="Main.h" />
-    <ClInclude Include="XAMLLeftovers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

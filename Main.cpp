@@ -1,13 +1,12 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <curl/curl.h>
+#include <json/json.h>
 #include <iostream>
+#include <stdio.h>
 
 #include "Main.h"
 #include "stb_image.h"
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow* window);
 
 // settings
 const unsigned int SCR_WIDTH = 800;
@@ -64,7 +63,7 @@ int main()
     std::unique_ptr<std::string> httpData(new std::string());
 
     // Hook up data handling function.
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callback);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
 
     // Hook up data container (will be passed as the last parameter to the
     // callback handling function).  Can be any pointer type, since it will
@@ -95,8 +94,30 @@ int main()
         if (!reader->parse(rawJson.c_str(), rawJson.c_str() + rawJsonLength, &root, &err)) {
 
         }
-        std::string one = root["data"]["StandardCollection"]["containers"][0]["set"]["items"][0]["image"]["tile"]["2.29"]["series"]["default"]["url"].toStyledString();
+        std::string imageURL = root["data"]["StandardCollection"]["containers"][0]["set"]["items"][0]["image"]["tile"]["2.29"]["series"]["default"]["url"].toStyledString();
 
+        FILE* fp;
+        CURLcode res;
+        errno_t ferr;
+        char outfilename[FILENAME_MAX] = "1.jpeg";
+        std::string readBuffer;
+
+        ferr = fopen_s(&fp, outfilename, "wb");
+        if ( ferr == 0)
+        {
+            curl = curl_easy_init();
+            if (curl) {
+                curl_easy_setopt(curl, CURLOPT_URL, imageURL.c_str());
+                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
+                curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+                res = curl_easy_perform(curl);
+                curl_easy_cleanup(curl);
+
+                std::cout << "TEST: " << readBuffer << std::endl;
+            }
+        }
+        fclose(fp);
+    }
 
 
 
@@ -267,3 +288,10 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
 }
+
+static size_t write_callback(void* contents, size_t size, size_t nmemb, void* userp)
+{
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
+
