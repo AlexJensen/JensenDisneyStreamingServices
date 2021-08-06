@@ -1,3 +1,5 @@
+#define CURL_STATICLIB
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <curl/curl.h>
@@ -94,12 +96,12 @@ int main()
         if (!reader->parse(rawJson.c_str(), rawJson.c_str() + rawJsonLength, &root, &err)) {
 
         }
-        std::string imageURL = root["data"]["StandardCollection"]["containers"][0]["set"]["items"][0]["image"]["tile"]["2.29"]["series"]["default"]["url"].toStyledString();
+        std::string imageURL = root["data"]["StandardCollection"]["containers"][0]["set"]["items"][0]["image"]["tile"]["2.29"]["series"]["default"]["url"].asString();
 
         FILE* fp;
         CURLcode res;
         errno_t ferr;
-        char outfilename[FILENAME_MAX] = "1.jpeg";
+        char outfilename[FILENAME_MAX] = "1.jpg";
         std::string readBuffer;
 
         ferr = fopen_s(&fp, outfilename, "wb");
@@ -108,12 +110,11 @@ int main()
             curl = curl_easy_init();
             if (curl) {
                 curl_easy_setopt(curl, CURLOPT_URL, imageURL.c_str());
-                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
-                curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+                curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+                curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
                 res = curl_easy_perform(curl);
                 curl_easy_cleanup(curl);
-
-                std::cout << "TEST: " << readBuffer << std::endl;
             }
         }
         fclose(fp);
@@ -236,7 +237,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load and generate the texture
     int width, height, nrChannels;
-    unsigned char* data = stbi_load("wall.jpg", &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load("1.jpg", &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -289,9 +290,16 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     glViewport(0, 0, width, height);
 }
 
-static size_t write_callback(void* contents, size_t size, size_t nmemb, void* userp)
+size_t write_callback(void* contents, size_t size, size_t nmemb, void* userp)
 {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
+}
+
+size_t write_data(void* ptr, size_t size, size_t nmemb, FILE* stream)
+{
+    size_t written;
+    written = fwrite(ptr, size, nmemb, stream);
+    return written;
 }
 
