@@ -33,7 +33,7 @@ void WindowController::Init()
     myShader = ResourceManager::GetShader("sprite");
     Renderer = new SpriteRenderer(myShader);
     // load textures
-    ResourceManager::LoadTexture("1.jpg", false, "1");
+    ResourceManager::LoadTexture("textures/1.jpg", false, "1");
 }
 
 void WindowController::Update(float dt)
