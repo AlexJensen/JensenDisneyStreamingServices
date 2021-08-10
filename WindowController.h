@@ -5,14 +5,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "ResourceManager.h"
+#include "SpriteRenderer.h"
+
 // Represents the current state of the game
-enum WindowState {
-    WINDOW_MAIN
-};
+
 class WindowController
 {
 public:
-    WindowState State;
     bool Keys[1024];
     unsigned int Width, Height;
 
@@ -26,7 +26,11 @@ public:
     // main render loop
     void ProcessInput(float dt);
     void Update(float dt);
-    void Render();
+
+    // draw function wrapper classes
+    void RenderImage(std::string textureName, float posx, float posy, float sizex, float sizey, float rotate);
+    void RenderImage(std::string textureName, float posx, float posy, float sizex, float sizey, float rotate,
+        float r, float g, float b);
 };
 
 #endif

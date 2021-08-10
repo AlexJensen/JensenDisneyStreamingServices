@@ -3,6 +3,9 @@
 
 #include <curl/curl.h>
 #include <string>
+#include <filesystem>
+#include <memory>
+#include <iostream>
 
 class CURLHandler
 {
@@ -10,7 +13,8 @@ public:
 	CURL* curl = curl_easy_init();
 	CURLHandler() {}
 	const std::string GetJSONFromURL(const std::string url);
-	void SaveImageFromURL(const std::string url, const char* outfilename);
+	void SaveImageFromURL(const std::string url, const char* directory, const char* outfilename);
+	void BuildDirectory(const char* directory);
 };
 
 size_t write_callback(void* contents, size_t size, size_t nmemb, void* userp);

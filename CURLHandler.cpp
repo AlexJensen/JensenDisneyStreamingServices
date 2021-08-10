@@ -1,6 +1,5 @@
 #include "CURLHandler.h"
-#include <memory>
-#include <iostream>
+
 
 const std::string CURLHandler::GetJSONFromURL(const std::string url)
 {
@@ -47,14 +46,15 @@ const std::string CURLHandler::GetJSONFromURL(const std::string url)
     }
 }
 
-void CURLHandler::SaveImageFromURL(const std::string url, const char* outfilename)
+void CURLHandler::SaveImageFromURL(const std::string url, const char* directory, const char* outfilename)
 {
     FILE* fp;
     CURLcode res;
     errno_t ferr;
 
-    std::string readBuffer;
+    BuildDirectory(directory);
 
+    std::string readBuffer;
     ferr = fopen_s(&fp, outfilename, "wb");
     if (ferr == 0)
     {
@@ -63,12 +63,27 @@ void CURLHandler::SaveImageFromURL(const std::string url, const char* outfilenam
             curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
             curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
             curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-            curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+            //curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
             res = curl_easy_perform(curl);
             curl_easy_cleanup(curl);
         }
         if (fp != NULL)
             fclose(fp);
+    }
+}
+
+void CURLHandler::BuildDirectory(const char* directory)
+{
+    //directory building
+    std::string d = directory;
+    std::string delimiter = "\\";
+
+    size_t pos = 0;
+    std::string token;
+    while ((pos = d.find(delimiter)) != std::string::npos) {
+        token = d.substr(0, pos);
+        std::cout << token << std::endl;
+        d.erase(0, pos + delimiter.length());
     }
 }
 

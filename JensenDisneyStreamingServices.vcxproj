@@ -144,7 +144,7 @@
   <ItemGroup>
     <ClCompile Include="3rd Party Downloaded Files\glad\src\glad.c" />
     <ClCompile Include="CURLHandler.cpp" />
-    <ClCompile Include="DisneyHomeJSONInterpreter.cpp" />
+    <ClCompile Include="DisneyInterpreter.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -155,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CURLHandler.h" />
-    <ClInclude Include="DisneyHomeJSONInterpreter.h" />
+    <ClInclude Include="DisneyInterpreter.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SpriteRenderer.h" />

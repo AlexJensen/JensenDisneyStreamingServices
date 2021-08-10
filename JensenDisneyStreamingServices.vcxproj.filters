@@ -51,9 +51,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
-    <ClCompile Include="WindowController.cpp">
-      <Filter>Source Files\Main</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
@@ -69,7 +66,7 @@
     <ClCompile Include="CURLHandler.cpp">
       <Filter>Source Files\CURL</Filter>
     </ClCompile>
-    <ClCompile Include="DisneyHomeJSONInterpreter.cpp">
+    <ClCompile Include="DisneyInterpreter.cpp">
       <Filter>Source Files\JSON</Filter>
     </ClCompile>
     <ClCompile Include="stb_image.cpp">
@@ -77,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="3rd Party Downloaded Files\glad\src\glad.c">
       <Filter>Source Files\GLAD</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowController.cpp">
+      <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,17 +95,17 @@
     <ClInclude Include="Main.h">
       <Filter>Header Files\Main</Filter>
     </ClInclude>
-    <ClInclude Include="WindowController.h">
-      <Filter>Header Files\Main</Filter>
-    </ClInclude>
     <ClInclude Include="CURLHandler.h">
       <Filter>Header Files\CURL</Filter>
     </ClInclude>
-    <ClInclude Include="DisneyHomeJSONInterpreter.h">
+    <ClInclude Include="DisneyInterpreter.h">
       <Filter>Header Files\JSON</Filter>
     </ClInclude>
     <ClInclude Include="stb_image.h">
       <Filter>Header Files\STBI</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowController.h">
+      <Filter>Header Files\OpenGL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

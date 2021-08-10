@@ -1,6 +1,5 @@
 #include "WindowController.h"
-#include "ResourceManager.h"
-#include "SpriteRenderer.h"
+
 
 // Game-related State data
 SpriteRenderer *Renderer;
@@ -9,7 +8,7 @@ const char* VERTEX_SHADER_PTH = "shaders/3.30core.shader.vs";
 const char* FRAGMENT_SHADER_PTH = "shaders/3.30core.shader.fs";
 
 WindowController::WindowController(unsigned int width, unsigned int height)
-    : State(WINDOW_MAIN), Keys(), Width(width), Height(height)
+    : Keys(), Width(width), Height(height)
 {
 
 }
@@ -33,7 +32,7 @@ void WindowController::Init()
     myShader = ResourceManager::GetShader("sprite");
     Renderer = new SpriteRenderer(myShader);
     // load textures
-    ResourceManager::LoadTexture("textures/1.jpg", false, "1");
+    //ResourceManager::LoadTexture("textures/1.jpg", false, "1");
 }
 
 void WindowController::Update(float dt)
@@ -46,14 +45,16 @@ void WindowController::ProcessInput(float dt)
 
 }
 
-void WindowController::Render()
+void WindowController::RenderImage(std::string textureName, float posx, float posy, float sizex, float sizey, float rotate)
+{
+    RenderImage(textureName, posx, posy, sizex, sizey, rotate, 1.0f, 1.0f, 1.0f);
+}
+
+void WindowController::RenderImage(std::string textureName, float posx, float posy, float sizex, float sizey, float rotate, 
+    float r, float g, float b)
 {
     Texture2D myTexture;
-    myTexture = ResourceManager::GetTexture("1");
-    Renderer->DrawSprite(myTexture, glm::vec2(50.0f, 50.0f), glm::vec2(100.0f, 125.0f), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
-    Renderer->DrawSprite(myTexture, glm::vec2(180.0f, 50.0f), glm::vec2(100.0f, 125.0f), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
-    Renderer->DrawSprite(myTexture, glm::vec2(680.0f, 80.0f), glm::vec2(100.0f, 125.0f), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
-    Renderer->DrawSprite(myTexture, glm::vec2(180.0f, 50.0f), glm::vec2(100.0f, 125.0f), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
-    Renderer->DrawSprite(myTexture, glm::vec2(180.0f, 200.0f), glm::vec2(100.0f, 125.0f), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
-    Renderer->DrawSprite(myTexture, glm::vec2(180.0f, 50.0f), glm::vec2(100.0f, 125.0f), 0.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+    myTexture = ResourceManager::GetTexture(textureName);
+    Renderer->DrawSprite(myTexture, glm::vec2(posx, posy), glm::vec2(sizex, sizey), rotate, glm::vec3(r, g, b));
 }
+
