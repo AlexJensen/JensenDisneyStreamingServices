@@ -3,11 +3,14 @@
 
 #include <map>
 #include <string>
-
 #include <glad/glad.h>
+#include <iostream>
+#include <sstream>
+#include <fstream>
 
 #include "texture.h"
 #include "shader.h"
+#include "stb_image.h"
 
 
 // A static singleton ResourceManager class that hosts several

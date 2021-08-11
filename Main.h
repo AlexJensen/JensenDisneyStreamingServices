@@ -1,6 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#define CURL_STATICLIB
+#define GLFW_INCLUDE_GLCOREARB
+
 //libaries
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

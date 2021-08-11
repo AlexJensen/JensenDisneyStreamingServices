@@ -1,6 +1,5 @@
 #include "WindowController.h"
 
-
 SpriteRenderer *Renderer;
 
 const char* VERTEX_SHADER_PTH = "shaders/3.30core.shader.vs";
@@ -46,7 +45,7 @@ void WindowController::LoadTextures()
     for (fs::recursive_directory_iterator i(apk_path); i != end; ++i)
     {
         const fs::path cp = (*i);
-        ResourceManager::LoadTexture((cp.string()).c_str(), false, cp.string());
+        ResourceManager::LoadTexture((cp.string()).c_str(), false, cp.string().substr(9,cp.string().length()));
     }
 
 }

@@ -1,5 +1,4 @@
 #include "DisneyInterpreter.h"
-#include <iostream>
 
 const std::string HOME_JSON("https://cd-static.bamgrid.com/dp-117731241344/home.json");
 const std::string REF_JSON("https://cd-static.bamgrid.com/dp-117731241344/sets/");
@@ -62,16 +61,7 @@ void DisneyInterpreter::GenerateImagesFromHome()
 			{
 				const std::string type = items[itemsindex]["type"].asString();
 				Json::Value imageURL, masterId;
-				if (type == "DmcSeries")
-				{
-					imageURL = items[itemsindex]["image"]["tile"]["1.78"]["series"]["default"]["url"];
-					masterId = items[itemsindex]["image"]["tile"]["1.78"]["series"]["default"]["masterId"];
-				}
-				else if (type == "DmcVideo")
-				{
-					imageURL = items[itemsindex]["image"]["tile"]["1.78"]["program"]["default"]["url"];
-					masterId = items[itemsindex]["image"]["tile"]["1.78"]["program"]["default"]["masterId"];
-				}
+				InterpretType(type, imageURL, items, itemsindex, masterId);
 
 				if (masterId != "")
 				{
@@ -94,16 +84,7 @@ void DisneyInterpreter::GenerateImagesFromRef()
 	{
 		const std::string type = items[itemsindex]["type"].asString();
 		Json::Value imageURL, masterId;
-		if (type == "DmcSeries")
-		{
-			imageURL = items[itemsindex]["image"]["tile"]["1.78"]["series"]["default"]["url"];
-			masterId = items[itemsindex]["image"]["tile"]["1.78"]["series"]["default"]["masterId"];
-		}
-		else if (type == "DmcVideo")
-		{
-			imageURL = items[itemsindex]["image"]["tile"]["1.78"]["program"]["default"]["url"];
-			masterId = items[itemsindex]["image"]["tile"]["1.78"]["program"]["default"]["masterId"];
-		}
+		InterpretType(type, imageURL, items, itemsindex, masterId);
 
 		if (masterId != "")
 		{
@@ -114,5 +95,30 @@ void DisneyInterpreter::GenerateImagesFromRef()
 
 void DisneyInterpreter::DrawMainMenu(WindowController window)
 {
-
+	//window.RenderImage()
 }
+
+
+void DisneyInterpreter::InterpretType(const std::string& type, Json::Value& imageURL, Json::Value& items, int itemsindex, Json::Value& masterId)
+{
+	if (type == "DmcSeries")
+	{
+		imageURL = items[itemsindex]["image"]["tile"]["1.78"]["series"]["default"]["url"];
+		masterId = items[itemsindex]["image"]["tile"]["1.78"]["series"]["default"]["masterId"];
+	}
+	else if (type == "DmcVideo")
+	{
+		imageURL = items[itemsindex]["image"]["tile"]["1.78"]["program"]["default"]["url"];
+		masterId = items[itemsindex]["image"]["tile"]["1.78"]["program"]["default"]["masterId"];
+	}
+	else if (type == "StandardCollection")
+	{
+		imageURL = items[itemsindex]["image"]["tile"]["1.78"]["default"]["default"]["url"];
+		masterId = items[itemsindex]["image"]["tile"]["1.78"]["default"]["default"]["masterId"];
+	}
+	else
+	{
+		std::cout << "ERROR::JSON: Encountered unexpected type: " << type << std::endl;
+	}
+}
+

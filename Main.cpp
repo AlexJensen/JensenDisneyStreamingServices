@@ -1,21 +1,14 @@
-#define CURL_STATICLIB
-#define GLFW_INCLUDE_GLCOREARB
-
 #include "Main.h"
-
 
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-
 
 WindowController Window(SCR_WIDTH, SCR_HEIGHT);
 
 int main()
 {
     DisneyInterpreter* disneyInterpreter = new DisneyInterpreter();
-
-   
     GLFWwindow* window = InitGLFW();
     if (window != NULL)
     {
@@ -49,6 +42,7 @@ int main()
         ResourceManager::Clear();
         glfwTerminate();
     }
+    delete disneyInterpreter;
     return 0;
 }
 
