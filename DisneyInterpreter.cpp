@@ -2,7 +2,7 @@
 #include <iostream>
 
 const std::string HOME_JSON("https://cd-static.bamgrid.com/dp-117731241344/home.json");
-const std::string REF_JSON("https://cd-static.bamgrid.com/dp-117731241344/sets/<refid>.json");
+const std::string REF_JSON("https://cd-static.bamgrid.com/dp-117731241344/sets/");
 
 DisneyInterpreter::DisneyInterpreter()
 {
@@ -21,7 +21,7 @@ void DisneyInterpreter::SetHomeFromURL(std::string url)
 	const std::string rawJson = curlHandler->GetJSONFromURL(url);
 	if (rawJson != "FAIL")
 	{
-		SetJsonValueFromRawJson(rawJson, root);
+		SetJsonValueFromRawJson(rawJson, &root);
 	}
 }
 
@@ -30,12 +30,12 @@ void DisneyInterpreter::SetRefFromURL(std::string url)
 	const std::string rawJson = curlHandler->GetJSONFromURL(url);
 	if (rawJson != "FAIL")
 	{
-		SetJsonValueFromRawJson(rawJson, ref);
+		SetJsonValueFromRawJson(rawJson, &ref);
 	}
 }
 
 
-void DisneyInterpreter::SetJsonValueFromRawJson(std::string rawJson, Json::Value val)
+void DisneyInterpreter::SetJsonValueFromRawJson(std::string rawJson, Json::Value* val)
 {
 	const auto rawJsonLength = static_cast<int>(rawJson.length());
 
@@ -43,7 +43,7 @@ void DisneyInterpreter::SetJsonValueFromRawJson(std::string rawJson, Json::Value
 	Json::CharReaderBuilder builder;
 
 	const std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
-	if (!reader->parse(rawJson.c_str(), rawJson.c_str() + rawJsonLength, &val, &err)) {
+	if (!reader->parse(rawJson.c_str(), rawJson.c_str() + rawJsonLength, val, &err)) {
 		std::cout << "ERROR::JSON: Failed to interpret JSON " << std::endl;
 	}
 }
@@ -79,9 +79,9 @@ void DisneyInterpreter::GenerateImagesFromHome()
 				}
 			}
 		}
-		else if (contentClass == "BecauseYouSet")
+		else if (contentClass == "BecauseYouSet" || contentClass == "TrendingSet" || contentClass == "PersonalizedCuratedSet")
 		{
-			SetRefFromURL(containers[containerindex]["set"]["refId"].asString());
+			SetRefFromURL(REF_JSON + containers[containerindex]["set"]["refId"].asString() + ".json");
 			GenerateImagesFromRef();
 		}
 	}
@@ -90,16 +90,29 @@ void DisneyInterpreter::GenerateImagesFromHome()
 void DisneyInterpreter::GenerateImagesFromRef()
 {
 	Json::Value items = ref["data"]["CuratedSet"]["items"];
+	for (int itemsindex = 0; itemsindex < items.size(); ++itemsindex)
+	{
+		const std::string type = items[itemsindex]["type"].asString();
+		Json::Value imageURL, masterId;
+		if (type == "DmcSeries")
+		{
+			imageURL = items[itemsindex]["image"]["tile"]["1.78"]["series"]["default"]["url"];
+			masterId = items[itemsindex]["image"]["tile"]["1.78"]["series"]["default"]["masterId"];
+		}
+		else if (type == "DmcVideo")
+		{
+			imageURL = items[itemsindex]["image"]["tile"]["1.78"]["program"]["default"]["url"];
+			masterId = items[itemsindex]["image"]["tile"]["1.78"]["program"]["default"]["masterId"];
+		}
+
+		if (masterId != "")
+		{
+			curlHandler->SaveImageFromURL(imageURL.asString(), "", ("textures/" + masterId.asString() + ".jpg").c_str());
+		}
+	}
 }
 
 void DisneyInterpreter::DrawMainMenu(WindowController window)
 {
 
 }
-
-
-/*
-
-
-
-	   curlHandler->SaveImageFromURL(imageURL, "textures/1.jpg");*/

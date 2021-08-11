@@ -36,7 +36,6 @@ const std::string CURLHandler::GetJSONFromURL(const std::string url)
 
     if (httpCode == 200)
     {
-        std::cout << "\nGot successful response from " << url << std::endl;
         return httpData.get()->c_str();
     }
     else
@@ -46,16 +45,16 @@ const std::string CURLHandler::GetJSONFromURL(const std::string url)
     }
 }
 
-void CURLHandler::SaveImageFromURL(const std::string url, const char* directory, const char* outfilename)
+void CURLHandler::SaveImageFromURL(const std::string url, const std::string directory, std::string outfilename)
 {
     FILE* fp;
     CURLcode res;
     errno_t ferr;
 
-    BuildDirectory(directory);
+    BuildDirectory(directory.c_str());
 
     std::string readBuffer;
-    ferr = fopen_s(&fp, outfilename, "wb");
+    ferr = fopen_s(&fp, outfilename.c_str(), "wb");
     if (ferr == 0)
     {
         curl = curl_easy_init();
@@ -72,6 +71,11 @@ void CURLHandler::SaveImageFromURL(const std::string url, const char* directory,
     }
 }
 
+
+/// <summary>
+/// WIP DO NOT USE
+/// </summary>
+/// <param name="directory"></param>
 void CURLHandler::BuildDirectory(const char* directory)
 {
     //directory building

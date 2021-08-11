@@ -1,7 +1,6 @@
 #include "WindowController.h"
 
 
-// Game-related State data
 SpriteRenderer *Renderer;
 
 const char* VERTEX_SHADER_PTH = "shaders/3.30core.shader.vs";
@@ -32,7 +31,24 @@ void WindowController::Init()
     myShader = ResourceManager::GetShader("sprite");
     Renderer = new SpriteRenderer(myShader);
     // load textures
-    //ResourceManager::LoadTexture("textures/1.jpg", false, "1");
+    LoadTextures();
+}
+
+void WindowController::LoadTextures()
+{
+    std::string path = "textures/";
+
+    namespace fs = boost::filesystem;
+
+    fs::path apk_path(path);
+    fs::recursive_directory_iterator end;
+
+    for (fs::recursive_directory_iterator i(apk_path); i != end; ++i)
+    {
+        const fs::path cp = (*i);
+        ResourceManager::LoadTexture((cp.string()).c_str(), false, cp.string());
+    }
+
 }
 
 void WindowController::Update(float dt)
@@ -50,7 +66,7 @@ void WindowController::RenderImage(std::string textureName, float posx, float po
     RenderImage(textureName, posx, posy, sizex, sizey, rotate, 1.0f, 1.0f, 1.0f);
 }
 
-void WindowController::RenderImage(std::string textureName, float posx, float posy, float sizex, float sizey, float rotate, 
+void WindowController::RenderImage(std::string textureName, float posx, float posy, float sizex, float sizey, float rotate,
     float r, float g, float b)
 {
     Texture2D myTexture;

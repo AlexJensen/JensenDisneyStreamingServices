@@ -4,9 +4,11 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <boost/filesystem.hpp>
 
 #include "ResourceManager.h"
 #include "SpriteRenderer.h"
+
 
 // Represents the current state of the game
 
@@ -22,6 +24,7 @@ public:
 
     // initialize window state (load all shaders/textures/levels)
     void Init();
+    void LoadTextures();
 
     // main render loop
     void ProcessInput(float dt);

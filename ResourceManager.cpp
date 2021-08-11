@@ -101,7 +101,7 @@ Texture2D ResourceManager::loadTextureFromFile(const char* file, bool alpha)
     unsigned char* data = stbi_load(file, &width, &height, &nrChannels, 0);
     if (!data)
     {
-        std::cout << "ERROR::STBI: Failed to load " << file << ": " << stbi_failure_reason();
+        std::cout << "ERROR::STBI: Failed to load " << file << ": " << stbi_failure_reason() << std::endl;
     }
     else
     {

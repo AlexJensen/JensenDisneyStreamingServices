@@ -14,7 +14,7 @@ public:
 	~DisneyInterpreter();
 	void SetHomeFromURL(std::string url);
 	void SetRefFromURL(std::string url);
-	void SetJsonValueFromRawJson(std::string rawJson, Json::Value val);
+	void SetJsonValueFromRawJson(std::string rawJson, Json::Value* val);
 	void GenerateImagesFromHome();
 	void GenerateImagesFromRef();
 	void DrawMainMenu(WindowController window);

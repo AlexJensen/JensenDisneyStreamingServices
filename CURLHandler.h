@@ -13,7 +13,7 @@ public:
 	CURL* curl = curl_easy_init();
 	CURLHandler() {}
 	const std::string GetJSONFromURL(const std::string url);
-	void SaveImageFromURL(const std::string url, const char* directory, const char* outfilename);
+	void SaveImageFromURL(const std::string url, std::string directory, std::string outfilename);
 	void BuildDirectory(const char* directory);
 };
 
