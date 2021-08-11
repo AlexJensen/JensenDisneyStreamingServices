@@ -16,7 +16,7 @@ public:
 
 	void DrawMainMenu(WindowController* window);
 
-	void DrawRefMenu(WindowController* window, int *xPos, int *yPos);
+	void DrawRefMenu(WindowController* window, std::string refType, int *xPos, int *yPos);
 
 private:
 	CURLHandler* curlHandler;
@@ -26,7 +26,7 @@ private:
 	void SetHomeFromURL(std::string url);
 	void SetRefFromURL(std::string url);
 	void GenerateImagesFromHome();
-	void GenerateImagesFromRef();
+	void GenerateImagesFromRef(std::string refType);
 
 	void SetJsonValueFromRawJson(std::string rawJson, Json::Value* val);
 	void InterpretType(const std::string& type, Json::Value& imageURL, Json::Value& items, int itemsindex, Json::Value& masterId);

@@ -76,14 +76,22 @@ void DisneyInterpreter::GenerateImagesFromHome()
 		else if (contentClass == "BecauseYouSet" || contentClass == "TrendingSet" || contentClass == "PersonalizedCuratedSet")
 		{
 			SetRefFromURL(REF_JSON + containers[containerindex]["set"]["refId"].asString() + ".json");
-			GenerateImagesFromRef();
+			GenerateImagesFromRef(contentClass);
+		}
+		else
+		{
+			std::cout << "ERROR::JSON: Encountered unexpected content class: " << contentClass << std::endl;
 		}
 	}
 }
 
-void DisneyInterpreter::GenerateImagesFromRef()
+void DisneyInterpreter::GenerateImagesFromRef(std::string refType)
 {
-	Json::Value items = ref["data"]["CuratedSet"]["items"];
+	Json::Value items = ref["data"][refType]["items"];
+	if (items.size() == 0)
+	{
+		std::cout << "ERROR::JSON: Encountered empty item list from generate: " << std::endl;
+	}
 	for (int itemsindex = 0; itemsindex < items.size(); ++itemsindex)
 	{
 		const std::string type = items[itemsindex]["type"].asString();
@@ -137,14 +145,22 @@ void DisneyInterpreter::DrawMainMenu(WindowController* window)
 		else if (contentClass == "BecauseYouSet" || contentClass == "TrendingSet" || contentClass == "PersonalizedCuratedSet")
 		{
 			SetRefFromURL(REF_JSON + containers[containerindex]["set"]["refId"].asString() + ".json");
-			DrawRefMenu(window, &xPos, &yPos);
+			DrawRefMenu(window, contentClass, &xPos, &yPos);
+		}
+		else
+		{
+			std::cout << "ERROR::JSON: Encountered unexpected content class: " << contentClass << std::endl;
 		}
 	}
 }
 
-void DisneyInterpreter::DrawRefMenu(WindowController* window, int *xPos, int *yPos)
+void DisneyInterpreter::DrawRefMenu(WindowController* window, std::string refType, int *xPos, int *yPos)
 {
-	Json::Value items = ref["data"]["CuratedSet"]["items"];
+	Json::Value items = ref["data"][refType]["items"];
+	if (items.size() == 0)
+	{
+		std::cout << "ERROR::JSON: Encountered empty item list from render: " << std::endl;
+	}
 	for (int itemsindex = 0; itemsindex < items.size(); ++itemsindex)
 	{
 		const std::string type = items[itemsindex]["type"].asString();
