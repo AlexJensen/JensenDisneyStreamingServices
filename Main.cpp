@@ -34,7 +34,7 @@ int main()
             glClear(GL_COLOR_BUFFER_BIT);
 
             //Start draw here
-            //disneyInterpreter->DrawMainMenu(Window);
+            disneyInterpreter->DrawMainMenu(&Window);
 
             glfwSwapBuffers(window);
         }

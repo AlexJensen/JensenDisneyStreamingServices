@@ -36,6 +36,7 @@ void WindowController::Init()
 void WindowController::LoadTextures()
 {
     std::string path = "textures/";
+    std::string type = ".jpg";
 
     namespace fs = boost::filesystem;
 
@@ -45,7 +46,7 @@ void WindowController::LoadTextures()
     for (fs::recursive_directory_iterator i(apk_path); i != end; ++i)
     {
         const fs::path cp = (*i);
-        ResourceManager::LoadTexture((cp.string()).c_str(), false, cp.string().substr(9,cp.string().length()));
+        ResourceManager::LoadTexture((cp.string()).c_str(), false, cp.string().substr(path.length(),cp.string().length() - type.length() - path.length()));
     }
 
 }

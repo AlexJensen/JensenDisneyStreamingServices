@@ -74,6 +74,8 @@ void CURLHandler::SaveImageFromURL(const std::string url, const std::string dire
 
 /// <summary>
 /// WIP DO NOT USE
+/// 
+/// This is supposed to build out directory paths that are missing folders, but I realized I don't actually need it so I didn't finish it. Keeping the code in case I need it later.
 /// </summary>
 /// <param name="directory"></param>
 void CURLHandler::BuildDirectory(const char* directory)

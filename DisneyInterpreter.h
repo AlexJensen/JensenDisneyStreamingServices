@@ -14,7 +14,9 @@ public:
 	DisneyInterpreter();
 	~DisneyInterpreter();
 
-	void DrawMainMenu(WindowController window);
+	void DrawMainMenu(WindowController* window);
+
+	void DrawRefMenu(WindowController* window, int *xPos, int *yPos);
 
 private:
 	CURLHandler* curlHandler;

@@ -67,6 +67,10 @@ void DisneyInterpreter::GenerateImagesFromHome()
 				{
 					curlHandler->SaveImageFromURL(imageURL.asString(), "", ("textures/" + masterId.asString() + ".jpg").c_str());
 				}
+				else
+				{
+					std::cout << "ERROR::JSON: Failed to retrieve MasterId: " << std::endl;
+				}
 			}
 		}
 		else if (contentClass == "BecauseYouSet" || contentClass == "TrendingSet" || contentClass == "PersonalizedCuratedSet")
@@ -90,12 +94,75 @@ void DisneyInterpreter::GenerateImagesFromRef()
 		{
 			curlHandler->SaveImageFromURL(imageURL.asString(), "", ("textures/" + masterId.asString() + ".jpg").c_str());
 		}
+		else
+		{
+			std::cout << "ERROR::JSON: Failed to retrieve MasterId: " << std::endl;
+		}
 	}
 }
 
-void DisneyInterpreter::DrawMainMenu(WindowController window)
+void DisneyInterpreter::DrawMainMenu(WindowController* window)
 {
-	//window.RenderImage()
+	int xPos = 20, yPos = 20;
+
+	const Json::Value containers = root["data"]["StandardCollection"]["containers"];
+	Json::Value items;
+
+	int debug = containers.size();
+	for (int containerindex = 0; containerindex < containers.size(); ++containerindex)
+	{
+		const std::string contentClass = containers[containerindex]["set"]["contentClass"].asString();
+		if (contentClass == "editorial")
+		{
+			items = containers[containerindex]["set"]["items"];
+			for (int itemsindex = 0; itemsindex < items.size(); ++itemsindex)
+			{
+				const std::string type = items[itemsindex]["type"].asString();
+				Json::Value imageURL, masterId;
+				InterpretType(type, imageURL, items, itemsindex, masterId);
+
+				if (masterId != "")
+				{
+					window->RenderImage(masterId.asString(), xPos, yPos, 50, 28, 0);
+					xPos += 60;
+				}
+				else
+				{
+					std::cout << "ERROR::JSON: Failed to retrieve MasterId: " << std::endl;
+				}
+			}
+			xPos = 20;
+			yPos += 48;
+		}
+		else if (contentClass == "BecauseYouSet" || contentClass == "TrendingSet" || contentClass == "PersonalizedCuratedSet")
+		{
+			SetRefFromURL(REF_JSON + containers[containerindex]["set"]["refId"].asString() + ".json");
+			DrawRefMenu(window, &xPos, &yPos);
+		}
+	}
+}
+
+void DisneyInterpreter::DrawRefMenu(WindowController* window, int *xPos, int *yPos)
+{
+	Json::Value items = ref["data"]["CuratedSet"]["items"];
+	for (int itemsindex = 0; itemsindex < items.size(); ++itemsindex)
+	{
+		const std::string type = items[itemsindex]["type"].asString();
+		Json::Value imageURL, masterId;
+		InterpretType(type, imageURL, items, itemsindex, masterId);
+
+		if (masterId != "")
+		{
+			window->RenderImage(masterId.asString(), *xPos, *yPos, 50, 28, 0);
+			*xPos += 60;
+		}	
+		else
+		{
+			std::cout << "ERROR::JSON: Failed to retrieve MasterId: " << std::endl;
+		}
+	}
+	*xPos = 20;
+	*yPos += 48;
 }
 
 
