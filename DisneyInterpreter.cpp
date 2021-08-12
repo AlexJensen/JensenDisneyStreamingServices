@@ -53,19 +53,26 @@ void DisneyInterpreter::GenerateImagesFromHome()
 	Json::Value items;
 	for (int containerindex = 0; containerindex < containers.size(); ++containerindex)
 	{
-		const std::string contentClass = containers[containerindex]["set"]["contentClass"].asString();
-		if (contentClass == "editorial")
+		const std::string type = containers[containerindex]["set"]["type"].asString();
+		if (type == "SetRef")
+		{
+			const std::string refType = containers[containerindex]["set"]["refType"].asString();
+			SetRefFromURL(REF_JSON + containers[containerindex]["set"]["refId"].asString() + ".json");
+			GenerateImagesFromRef(refType);
+		}
+		else if (type == "CuratedSet")
 		{
 			items = containers[containerindex]["set"]["items"];
 			for (int itemsindex = 0; itemsindex < items.size(); ++itemsindex)
 			{
 				const std::string type = items[itemsindex]["type"].asString();
 				Json::Value imageURL, masterId;
+
 				InterpretType(type, imageURL, items, itemsindex, masterId);
 
-				if (masterId != "")
+				if (masterId.asString() != "")
 				{
-					curlHandler->SaveImageFromURL(imageURL.asString(), "", ("textures/" + masterId.asString() + ".jpg").c_str());
+					SaveIfFileDoesNotExist(masterId, imageURL);
 				}
 				else
 				{
@@ -73,24 +80,23 @@ void DisneyInterpreter::GenerateImagesFromHome()
 				}
 			}
 		}
-		else if (contentClass == "BecauseYouSet" || contentClass == "TrendingSet" || contentClass == "PersonalizedCuratedSet")
-		{
-			SetRefFromURL(REF_JSON + containers[containerindex]["set"]["refId"].asString() + ".json");
-			GenerateImagesFromRef(contentClass);
-		}
 		else
 		{
-			std::cout << "ERROR::JSON: Encountered unexpected content class: " << contentClass << std::endl;
+			std::cout << "ERROR::JSON: Encountered unexpected type: " << type << std::endl;
 		}
 	}
 }
 
 void DisneyInterpreter::GenerateImagesFromRef(std::string refType)
 {
+	InterpretRefType(refType);
 	Json::Value items = ref["data"][refType]["items"];
 	if (items.size() == 0)
 	{
-		std::cout << "ERROR::JSON: Encountered empty item list from generate: " << std::endl;
+		std::cout << "ERROR::JSON: Encountered empty item list from generate: " << refType << std::endl;
+		for (auto const& id : ref["data"].getMemberNames()) {
+			std::cout << id << std::endl;
+		}
 	}
 	for (int itemsindex = 0; itemsindex < items.size(); ++itemsindex)
 	{
@@ -98,9 +104,9 @@ void DisneyInterpreter::GenerateImagesFromRef(std::string refType)
 		Json::Value imageURL, masterId;
 		InterpretType(type, imageURL, items, itemsindex, masterId);
 
-		if (masterId != "")
+		if (masterId.asString() != "")
 		{
-			curlHandler->SaveImageFromURL(imageURL.asString(), "", ("textures/" + masterId.asString() + ".jpg").c_str());
+			SaveIfFileDoesNotExist(masterId, imageURL);
 		}
 		else
 		{
@@ -109,9 +115,24 @@ void DisneyInterpreter::GenerateImagesFromRef(std::string refType)
 	}
 }
 
+void DisneyInterpreter::SaveIfFileDoesNotExist(Json::Value& masterId, Json::Value& imageURL)
+{
+	namespace fs = boost::filesystem;
+	if (!fileExists("textures/" + masterId.asString() + ".jpg"))
+	{
+		curlHandler->SaveImageFromURL(imageURL.asString(), "", ("textures/" + masterId.asString() + ".jpg").c_str());
+	}
+}
+
+// true if file exists
+bool DisneyInterpreter::fileExists(const std::string& file) {
+	struct stat buf;
+	return (stat(file.c_str(), &buf) == 0);
+}
+
 void DisneyInterpreter::DrawMainMenu(WindowController* window)
 {
-	int xPos = 20, yPos = 20;
+	mainMenuButton mbTemp;
 
 	const Json::Value containers = root["data"]["StandardCollection"]["containers"];
 	Json::Value items;
@@ -119,8 +140,14 @@ void DisneyInterpreter::DrawMainMenu(WindowController* window)
 	int debug = containers.size();
 	for (int containerindex = 0; containerindex < containers.size(); ++containerindex)
 	{
-		const std::string contentClass = containers[containerindex]["set"]["contentClass"].asString();
-		if (contentClass == "editorial")
+		const std::string type = containers[containerindex]["set"]["type"].asString();
+		if (type == "SetRef")
+		{
+			const std::string refType = containers[containerindex]["set"]["refType"].asString();
+			SetRefFromURL(REF_JSON + containers[containerindex]["set"]["refId"].asString() + ".json");
+			DrawRefMenu(window, refType, &mbTemp);
+		}
+		else if (type == "CuratedSet")
 		{
 			items = containers[containerindex]["set"]["items"];
 			for (int itemsindex = 0; itemsindex < items.size(); ++itemsindex)
@@ -131,35 +158,34 @@ void DisneyInterpreter::DrawMainMenu(WindowController* window)
 
 				if (masterId != "")
 				{
-					window->RenderImage(masterId.asString(), xPos, yPos, 50, 28, 0);
-					xPos += 60;
+					window->RenderImage(masterId.asString(), mbTemp.xPos, mbTemp.yPos, mbTemp.width, mbTemp.height, 0);
+					mbTemp.xPos += mbTemp.width + mbTemp.xgap;
 				}
 				else
 				{
 					std::cout << "ERROR::JSON: Failed to retrieve MasterId: " << std::endl;
 				}
 			}
-			xPos = 20;
-			yPos += 48;
-		}
-		else if (contentClass == "BecauseYouSet" || contentClass == "TrendingSet" || contentClass == "PersonalizedCuratedSet")
-		{
-			SetRefFromURL(REF_JSON + containers[containerindex]["set"]["refId"].asString() + ".json");
-			DrawRefMenu(window, contentClass, &xPos, &yPos);
+			mbTemp.xPos = mbTemp.xstart;
+			mbTemp.yPos += mbTemp.height + mbTemp.ygap;
 		}
 		else
 		{
-			std::cout << "ERROR::JSON: Encountered unexpected content class: " << contentClass << std::endl;
+			std::cout << "ERROR::JSON: Encountered unexpected type in main: " << type << std::endl;
 		}
 	}
 }
 
-void DisneyInterpreter::DrawRefMenu(WindowController* window, std::string refType, int *xPos, int *yPos)
+void DisneyInterpreter::DrawRefMenu(WindowController* window, std::string refType, mainMenuButton* mbTemp)
 {
+	InterpretRefType(refType);
 	Json::Value items = ref["data"][refType]["items"];
 	if (items.size() == 0)
 	{
-		std::cout << "ERROR::JSON: Encountered empty item list from render: " << std::endl;
+		std::cout << "ERROR::JSON: Encountered empty item list from render: " << refType << std::endl;
+		for (auto const& id : ref["data"].getMemberNames()) {
+			std::cout << id << std::endl;
+		}
 	}
 	for (int itemsindex = 0; itemsindex < items.size(); ++itemsindex)
 	{
@@ -167,20 +193,27 @@ void DisneyInterpreter::DrawRefMenu(WindowController* window, std::string refTyp
 		Json::Value imageURL, masterId;
 		InterpretType(type, imageURL, items, itemsindex, masterId);
 
-		if (masterId != "")
+		if (masterId.asString() != "")
 		{
-			window->RenderImage(masterId.asString(), *xPos, *yPos, 50, 28, 0);
-			*xPos += 60;
+			window->RenderImage(masterId.asString(), mbTemp->xPos, mbTemp->yPos, mbTemp->width, mbTemp->height, 0);
+			mbTemp->xPos += mbTemp->width + mbTemp->xgap;
 		}	
 		else
 		{
 			std::cout << "ERROR::JSON: Failed to retrieve MasterId: " << std::endl;
 		}
 	}
-	*xPos = 20;
-	*yPos += 48;
+	mbTemp->xPos = mbTemp->xstart;
+	mbTemp->yPos += mbTemp->height + mbTemp->ygap;
 }
 
+void DisneyInterpreter::InterpretRefType(std::string& refType)
+{
+	if (refType == "BecauseYouSet")
+	{
+		refType = "CuratedSet";
+	}
+}
 
 void DisneyInterpreter::InterpretType(const std::string& type, Json::Value& imageURL, Json::Value& items, int itemsindex, Json::Value& masterId)
 {
@@ -201,7 +234,7 @@ void DisneyInterpreter::InterpretType(const std::string& type, Json::Value& imag
 	}
 	else
 	{
-		std::cout << "ERROR::JSON: Encountered unexpected type: " << type << std::endl;
+		std::cout << "ERROR::JSON: Encountered unexpected type during InterpretTypes: " << type << std::endl;
 	}
 }
 
