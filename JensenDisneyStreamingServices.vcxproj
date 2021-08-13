@@ -145,22 +145,26 @@
     <ClCompile Include="3rd Party Downloaded Files\glad\src\glad.c" />
     <ClCompile Include="CURLHandler.cpp" />
     <ClCompile Include="DisneyInterpreter.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="WindowController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CURLHandler.h" />
     <ClInclude Include="DisneyInterpreter.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="WindowController.h" />
   </ItemGroup>

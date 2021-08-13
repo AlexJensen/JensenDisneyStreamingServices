@@ -6,9 +6,10 @@
 #include <GLFW/glfw3.h>
 #include <boost/filesystem.hpp>
 
+
 #include "ResourceManager.h"
 #include "SpriteRenderer.h"
-
+#include "TextRenderer.h"
 
 // Represents the current state of the game
 
@@ -22,9 +23,8 @@ public:
     WindowController(unsigned int width, unsigned int height);
     ~WindowController();
 
-    // initialize window state (load all shaders/textures/levels)
+    // initialize window state (load all shaders/textures/fonts)
     void Init();
-    void LoadTextures();
 
     // main render loop
     void ProcessInput(float dt);
@@ -34,6 +34,15 @@ public:
     void RenderImage(std::string textureName, float posx, float posy, float sizex, float sizey, float rotate);
     void RenderImage(std::string textureName, float posx, float posy, float sizex, float sizey, float rotate,
         float r, float g, float b);
+    void RenderText(std::string text, std::string font, float x, float y, float scale, glm::vec3 color);
+
+private:
+    void LoadShaders();
+    void LoadTextures();
+    void LoadFonts();
+
+
+    FT_Library ft;
 };
 
 #endif

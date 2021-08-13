@@ -8,6 +8,12 @@ WindowController Window(SCR_WIDTH, SCR_HEIGHT);
 
 int main()
 {
+    if (__cplusplus == 201703L) std::cout << "C++17\n";
+    else if (__cplusplus == 201402L) std::cout << "C++14\n";
+    else if (__cplusplus == 201103L) std::cout << "C++11\n";
+    else if (__cplusplus == 199711L) std::cout << "C++98\n";
+    else std::cout << "pre-standard C++\n";
+
     DisneyInterpreter* disneyInterpreter = new DisneyInterpreter();
     GLFWwindow* window = InitGLFW();
     if (window != NULL)
@@ -35,6 +41,8 @@ int main()
 
             //Start draw here
             disneyInterpreter->DrawMainMenu(&Window);
+
+            Window.RenderText("HELLO WORLD", "walter", 100, 100, 16, glm::vec3(1, 1, 1));
 
             glfwSwapBuffers(window);
         }
@@ -80,6 +88,7 @@ GLFWwindow* InitGLFW()
     // OpenGL configuration
          // --------------------
     glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
+    glEnable(GL_CULL_FACE);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 

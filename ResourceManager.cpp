@@ -3,6 +3,7 @@
 // Instantiate static variables
 std::map<std::string, Texture2D> ResourceManager::Textures;
 std::map<std::string, Shader> ResourceManager::Shaders;
+std::map<std::string, Font> ResourceManager::Fonts;
 
 
 Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name)
@@ -25,6 +26,17 @@ Texture2D ResourceManager::LoadTexture(const char* file, bool alpha, std::string
 Texture2D ResourceManager::GetTexture(std::string name)
 {
     return Textures[name];
+}
+
+Font ResourceManager::LoadFont(const char* file, std::string name)
+{
+    Fonts[name] = loadFontFromFile(file);
+    return Fonts[name];
+}
+
+Font::Character ResourceManager::GetCharacter(const char* font, char character)
+{
+    return Fonts[font].Characters[character];
 }
 
 void ResourceManager::Clear()
@@ -80,7 +92,6 @@ Shader ResourceManager::loadShaderFromFile(const char* vShaderFile, const char* 
     shader.Compile(vShaderCode, fShaderCode, gShaderFile != nullptr ? gShaderCode : nullptr);
     return shader;
 }
-
 Texture2D ResourceManager::loadTextureFromFile(const char* file, bool alpha)
 {
     // create texture object
@@ -105,4 +116,10 @@ Texture2D ResourceManager::loadTextureFromFile(const char* file, bool alpha)
         stbi_image_free(data);
     }
     return texture;
+}
+Font ResourceManager::loadFontFromFile(const char* file)
+{
+    Font font;
+    font.Generate(file);
+    return font;
 }
