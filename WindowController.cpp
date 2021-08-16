@@ -12,18 +12,12 @@ const char* TEXT_FRAGMENT_SHADER_PTH = "shaders/3.30coreText.shader.fs";
 WindowController::WindowController(unsigned int width, unsigned int height)
     : Keys(), Width(width), Height(height)
 {
-    // FreeType
-    // --------
-    // All functions return a value different than 0 whenever an error occurred
-    if (FT_Init_FreeType(&ft))
-    {
-        std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std::endl;
-    }
+
 }
 
 WindowController::~WindowController()
 {
-    delete spriteRenderer;
+    delete spriteRenderer, textRenderer;
 }
 
 void WindowController::Init()
@@ -37,21 +31,28 @@ void WindowController::LoadShaders()
 {
     // load shaders
     ResourceManager::LoadShader(IMAGE_VERTEX_SHADER_PTH, IMAGE_FRAGMENT_SHADER_PTH, nullptr, "sprite");
+    ResourceManager::LoadShader(TEXT_VERTEX_SHADER_PTH, TEXT_FRAGMENT_SHADER_PTH, nullptr, "text");
+
     // configure shaders
-    glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->Width),
-        static_cast<float>(this->Height), 0.0f, -1.0f, 1.0f);
+    glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->Width), static_cast<float>(this->Height), 0.0f);
     ResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
     ResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
+    ResourceManager::GetShader("text").Use().SetInteger("image", 0);
+    ResourceManager::GetShader("text").SetMatrix4("projection", projection);
+
     // set render-specific controls
-    Shader myShader;
-    myShader = ResourceManager::GetShader("sprite");
-    spriteRenderer = new SpriteRenderer(myShader);
+    Shader sprite, text;
+    sprite = ResourceManager::GetShader("sprite");
+    text = ResourceManager::GetShader("text");
+
+    spriteRenderer = new SpriteRenderer(sprite);
+    textRenderer = new TextRenderer(text, Width, Height);
 }
 
 void WindowController::LoadTextures()
 {
     std::string path = "textures/";
-    std::string type = ".jpg";
+    int typeLength = 4; // .png .jpg
 
     namespace fs = boost::filesystem;
 
@@ -61,9 +62,9 @@ void WindowController::LoadTextures()
     for (fs::recursive_directory_iterator i(apk_path); i != end; ++i)
     {
         const fs::path cp = (*i);
-        ResourceManager::LoadTexture((cp.string()).c_str(), false, cp.string().substr(path.length(),cp.string().length() - type.length() - path.length()));
+        std::string type = cp.string().substr(cp.string().length() - typeLength, typeLength);
+        ResourceManager::LoadTexture((cp.string()).c_str(), type == ".png", cp.string().substr(path.length(), cp.string().length() - type.length() - path.length()));
     }
-
 }
 
 void WindowController::LoadFonts()
@@ -75,22 +76,17 @@ void WindowController::LoadFonts()
 
     fs::path apk_path(path);
     fs::recursive_directory_iterator end;
+    const int fontSizes[7] = {12, 18, 24, 36, 48, 60, 72};
+    const char* fontSizeStr[7] = { "12", "18", "24", "36", "48", "60", "72" };
 
     for (fs::recursive_directory_iterator i(apk_path); i != end; ++i)
     {
         const fs::path cp = (*i);
-        ResourceManager::LoadFont((cp.string()).c_str(), cp.string().substr(path.length(), cp.string().length() - type.length() - path.length()));
+        for (unsigned int i = 0; i < 7; i++)
+        {
+            ResourceManager::LoadFont((cp.string()).c_str(), cp.string().substr(path.length(), cp.string().length() - type.length() - path.length()) + fontSizeStr[i], fontSizes[i]);
+        }
     }
-}
-
-void WindowController::Update(float dt)
-{
-
-}
-
-void WindowController::ProcessInput(float dt)
-{
-
 }
 
 void WindowController::RenderImage(std::string textureName, float posx, float posy, float sizex, float sizey, float rotate)

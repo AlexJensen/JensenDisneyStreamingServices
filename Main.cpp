@@ -33,16 +33,14 @@ int main()
             lastFrame = currentFrame;
             glfwPollEvents();
 
-            Window.ProcessInput(deltaTime);
-            Window.Update(deltaTime);
+            disneyInterpreter->ProcessInput(&Window);
+            disneyInterpreter->Update(&Window, deltaTime);
 
-            glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+            glClearColor(0.0f, 0.2f, 0.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
 
-            //Start draw here
-            disneyInterpreter->DrawMainMenu(&Window);
-
-            Window.RenderText("HELLO WORLD", "walter", 100, 100, 16, glm::vec3(1, 1, 1));
+           //Start draw here
+           disneyInterpreter->DrawMainMenu(&Window);
 
             glfwSwapBuffers(window);
         }
@@ -97,12 +95,17 @@ GLFWwindow* InitGLFW()
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
     if (key >= 0 && key < 1024)
     {
         if (action == GLFW_PRESS)
             Window.Keys[key] = true;
         else if (action == GLFW_RELEASE)
+        {
             Window.Keys[key] = false;
+            Window.KeysProcessed[key] = false;
+        }
     }
 }
 

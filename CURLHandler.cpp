@@ -45,13 +45,11 @@ const std::string CURLHandler::GetJSONFromURL(const std::string url)
     }
 }
 
-void CURLHandler::SaveImageFromURL(const std::string url, const std::string directory, std::string outfilename)
+void CURLHandler::SaveImageFromURL(const std::string url, std::string outfilename)
 {
     FILE* fp;
     CURLcode res;
     errno_t ferr;
-
-    BuildDirectory(directory.c_str());
 
     std::string readBuffer;
     ferr = fopen_s(&fp, outfilename.c_str(), "wb");
@@ -68,28 +66,6 @@ void CURLHandler::SaveImageFromURL(const std::string url, const std::string dire
         }
         if (fp != NULL)
             fclose(fp);
-    }
-}
-
-
-/// <summary>
-/// WIP DO NOT USE
-/// 
-/// This is supposed to build out directory paths that are missing folders, but I realized I don't actually need it so I didn't finish it. Keeping the code in case I need it later.
-/// </summary>
-/// <param name="directory"></param>
-void CURLHandler::BuildDirectory(const char* directory)
-{
-    //directory building
-    std::string d = directory;
-    std::string delimiter = "\\";
-
-    size_t pos = 0;
-    std::string token;
-    while ((pos = d.find(delimiter)) != std::string::npos) {
-        token = d.substr(0, pos);
-        std::cout << token << std::endl;
-        d.erase(0, pos + delimiter.length());
     }
 }
 

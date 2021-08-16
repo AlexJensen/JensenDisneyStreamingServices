@@ -9,20 +9,24 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
+/// <summary>
+/// Stores a map of characters for a specified font of a specified size
+/// </summary>
 class Font
 {
 public:
-    //font structs
+    //character structs
     struct Character {
         unsigned int TextureID;  // ID handle of the glyph texture
         glm::ivec2   Size;       // Size of glyph
         glm::ivec2   Bearing;    // Offset from baseline to left/top of glyph
         unsigned int Advance;    // Offset to advance to next glyph
     };
-
+    
     std::map<char, Character> Characters;
 
-    Font Generate(const char* file);
+    // Loads characters into the character map for a font stored in the fonts folder with a specifed font size
+    void Generate(const char* file, unsigned int fontSize);
 };
 
 #endif

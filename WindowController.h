@@ -11,12 +11,13 @@
 #include "SpriteRenderer.h"
 #include "TextRenderer.h"
 
-// Represents the current state of the game
-
+/// <summary>
+/// Stores information needed to create and draw to the screen, load resources, register user input, and other various functions to perform common drawing commands.
+/// </summary>
 class WindowController
 {
 public:
-    bool Keys[1024];
+    bool Keys[1024], KeysProcessed[1024];
     unsigned int Width, Height;
 
     // constructor/destructor
@@ -25,10 +26,6 @@ public:
 
     // initialize window state (load all shaders/textures/fonts)
     void Init();
-
-    // main render loop
-    void ProcessInput(float dt);
-    void Update(float dt);
 
     // draw function wrapper classes
     void RenderImage(std::string textureName, float posx, float posy, float sizex, float sizey, float rotate);
@@ -40,9 +37,6 @@ private:
     void LoadShaders();
     void LoadTextures();
     void LoadFonts();
-
-
-    FT_Library ft;
 };
 
 #endif

@@ -157,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CURLHandler.h" />
+    <ClInclude Include="DisneyMenuItemTypes.h" />
     <ClInclude Include="DisneyInterpreter.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="ResourceManager.h" />

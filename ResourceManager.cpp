@@ -28,13 +28,13 @@ Texture2D ResourceManager::GetTexture(std::string name)
     return Textures[name];
 }
 
-Font ResourceManager::LoadFont(const char* file, std::string name)
+Font ResourceManager::LoadFont(const char* file, std::string name, unsigned int fontSize)
 {
-    Fonts[name] = loadFontFromFile(file);
+    Fonts[name] = loadFontFromFile(file, fontSize);
     return Fonts[name];
 }
 
-Font::Character ResourceManager::GetCharacter(const char* font, char character)
+Font::Character ResourceManager::GetCharacter(const std::string font, char character)
 {
     return Fonts[font].Characters[character];
 }
@@ -92,6 +92,7 @@ Shader ResourceManager::loadShaderFromFile(const char* vShaderFile, const char* 
     shader.Compile(vShaderCode, fShaderCode, gShaderFile != nullptr ? gShaderCode : nullptr);
     return shader;
 }
+
 Texture2D ResourceManager::loadTextureFromFile(const char* file, bool alpha)
 {
     // create texture object
@@ -117,9 +118,9 @@ Texture2D ResourceManager::loadTextureFromFile(const char* file, bool alpha)
     }
     return texture;
 }
-Font ResourceManager::loadFontFromFile(const char* file)
+Font ResourceManager::loadFontFromFile(const char* file, unsigned int fontSize)
 {
     Font font;
-    font.Generate(file);
+    font.Generate(file, fontSize);
     return font;
 }
