@@ -142,9 +142,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="3rd Party Downloaded Files\glad\src\glad.c" />
     <ClCompile Include="CURLHandler.cpp" />
     <ClCompile Include="DisneyInterpreter.cpp" />
+    <ClCompile Include="ExternalLibs\Include\glad\glad.c" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ResourceManager.cpp" />

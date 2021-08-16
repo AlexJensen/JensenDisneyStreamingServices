@@ -72,9 +72,6 @@
     <ClCompile Include="stb_image.cpp">
       <Filter>Source Files\STBI</Filter>
     </ClCompile>
-    <ClCompile Include="3rd Party Downloaded Files\glad\src\glad.c">
-      <Filter>Source Files\GLAD</Filter>
-    </ClCompile>
     <ClCompile Include="WindowController.cpp">
       <Filter>Source Files\OpenGL</Filter>
     </ClCompile>
@@ -83,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>Source Files\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="ExternalLibs\Include\glad\glad.c">
+      <Filter>Source Files\GLAD</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
